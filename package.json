@@ -1,0 +1,19 @@
+{
+  "name": "artisan-graduate-job-board",
+  "version": "1.0.0",
+  "description": "A job board connecting Nigerian artisans and graduates with people who need their skills. Built for the 3MTT NextGen Capstone Project (Brief SD-16).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "express": "^4.19.2"
+  },
+  "author": "Kefas Ayuba",
+  "license": "MIT"
+}

@@ -1,0 +1,444 @@
+/* ============================================
+   Ojiro Board — visual identity
+   Palette drawn from adire indigo cloth and the
+   hand-painted signboards of Nigerian workshops.
+   ============================================ */
+
+:root {
+  --indigo: #1E2A4A;
+  --indigo-deep: #131C33;
+  --ochre: #E0A030;
+  --ochre-deep: #B87D1E;
+  --paper: #F6F1E4;
+  --paper-card: #FFFDF7;
+  --ink: #221F1A;
+  --ink-soft: #57503F;
+  --brick: #B23A2E;
+  --line: #DCD2B8;
+  --radius: 4px;
+  --shadow: 0 2px 0 rgba(34, 31, 26, 0.08), 0 8px 20px rgba(34, 31, 26, 0.06);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  font-family: "Archivo Black", "IBM Plex Sans", sans-serif;
+  line-height: 1.15;
+  margin: 0 0 0.4em;
+  letter-spacing: -0.01em;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+a { color: var(--indigo); }
+
+/* ---------- header ---------- */
+
+.site-header {
+  background: var(--indigo);
+  color: var(--paper);
+  border-bottom: 4px solid var(--ochre);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 24px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: auto;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: var(--ochre);
+  color: var(--indigo-deep);
+  font-family: "Archivo Black", sans-serif;
+  font-size: 15px;
+  border-radius: var(--radius);
+  transform: rotate(-3deg);
+  flex-shrink: 0;
+}
+
+.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.brand-name { font-family: "Archivo Black", sans-serif; font-size: 18px; }
+.brand-sub { font-size: 12px; color: #C9CFE0; }
+
+.header-stats {
+  font-size: 13px;
+  color: #C9CFE0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.header-stats strong { color: var(--ochre); font-size: 15px; }
+.header-stats .dot { opacity: 0.5; }
+
+/* ---------- hero ---------- */
+
+.hero {
+  background: var(--indigo-deep);
+  color: var(--paper);
+  padding: 56px 0 64px;
+  background-image:
+    repeating-linear-gradient(135deg, rgba(224,160,48,0.06) 0px, rgba(224,160,48,0.06) 2px, transparent 2px, transparent 22px);
+}
+
+.hero-eyebrow {
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+  color: var(--ochre);
+  margin: 0 0 14px;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 4.4vw, 46px);
+  max-width: 14ch;
+  margin-bottom: 18px;
+}
+
+.hero-copy {
+  max-width: 56ch;
+  color: #D8DCEA;
+  font-size: 16px;
+}
+
+/* ---------- controls ---------- */
+
+.board-controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 10px;
+  margin: -28px 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.board-controls input,
+.board-controls select {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper-card);
+  box-shadow: var(--shadow);
+  color: var(--ink);
+}
+
+.board-controls input:focus,
+.board-controls select:focus,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--ochre);
+  outline-offset: 1px;
+}
+
+.board-meta {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
+/* ---------- job grid ---------- */
+
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  margin-bottom: 60px;
+}
+
+.job-card {
+  position: relative;
+  background: var(--paper-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pin {
+  position: absolute;
+  top: -8px;
+  left: 22px;
+  width: 14px;
+  height: 14px;
+  background: var(--brick);
+  border-radius: 50%;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.25);
+}
+
+.job-card-top {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.badge {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 8px;
+  border-radius: 3px;
+}
+.badge-category { background: var(--indigo); color: var(--paper); }
+.badge-type { background: #EFE6C8; color: var(--ink-soft); border: 1px solid var(--line); }
+
+.job-title { font-size: 17px; margin-bottom: 2px; }
+.job-poster { font-size: 13px; color: var(--ink-soft); margin: 0; }
+.job-location { font-size: 13px; color: var(--ink-soft); margin: 0; }
+.job-pay { font-size: 14px; font-weight: 600; color: var(--ochre-deep); margin: 4px 0; }
+.job-desc {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin: 4px 0 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.job-card-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed var(--line);
+  padding-top: 12px;
+}
+
+.job-apps { font-size: 12px; color: var(--ink-soft); }
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--ink-soft);
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: transform 0.08s ease, filter 0.15s ease;
+}
+.btn:active { transform: translateY(1px); }
+
+.btn-primary { background: var(--ochre); color: var(--indigo-deep); }
+.btn-primary:hover { filter: brightness(1.06); }
+
+.btn-secondary { background: var(--paper); color: var(--indigo); border: 1px solid var(--indigo); }
+
+.btn-small { padding: 8px 12px; font-size: 12.5px; }
+.btn-full { width: 100%; margin-top: 10px; }
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  background: var(--indigo-deep);
+  color: #A9AFC4;
+  font-size: 12.5px;
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* ---------- modals ---------- */
+
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(19, 28, 51, 0.65);
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px;
+  overflow-y: auto;
+  z-index: 100;
+}
+.modal-backdrop.open { display: flex; }
+
+.modal {
+  background: var(--paper-card);
+  border-radius: 6px;
+  padding: 28px 26px 26px;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+.modal-wide { max-width: 640px; }
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+
+.modal-sub { color: var(--ink-soft); font-size: 13.5px; margin-top: 0; }
+
+/* ---------- forms ---------- */
+
+form label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+
+form input, form select, form textarea {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--ink);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-error {
+  color: var(--brick);
+  font-size: 13px;
+  min-height: 18px;
+  margin: 4px 0 0;
+}
+
+.manage-code {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 24px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  background: var(--indigo);
+  color: var(--ochre);
+  padding: 16px;
+  border-radius: var(--radius);
+  margin: 16px 0;
+}
+
+/* ---------- job detail modal ---------- */
+
+.detail-badges { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.detail-section { margin: 16px 0; }
+.detail-section h4 {
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin: 0 0 6px;
+}
+.detail-desc { white-space: pre-wrap; font-size: 14.5px; }
+
+.contact-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+.contact-actions a.btn { text-decoration: none; display: inline-block; }
+
+.apply-form { border-top: 1px dashed var(--line); margin-top: 22px; padding-top: 18px; }
+
+/* ---------- applicant list ---------- */
+
+.applicant-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-top: 12px;
+  background: #fff;
+}
+.applicant-card p { margin: 3px 0; font-size: 13.5px; }
+.applicant-name { font-weight: 700; }
+
+.danger-zone {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+.danger-zone .btn { background: transparent; color: var(--brick); border: 1px solid var(--brick); }
+
+/* ---------- toast ---------- */
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--indigo);
+  color: var(--paper);
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 200;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 760px) {
+  .board-controls { grid-template-columns: 1fr; margin-top: 8px; }
+  .field-row { grid-template-columns: 1fr; }
+  .header-stats { order: 3; width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ojiro Board — Find Skilled Hands. Find Work.</title>
+<meta name="description" content="A noticeboard connecting Nigerian artisans and graduates with people who need their skills." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <span class="brand-mark">OB</span>
+      <div class="brand-text">
+        <span class="brand-name">Ojiro Board</span>
+        <span class="brand-sub">skilled hands &amp; graduates, Kaduna &amp; beyond</span>
+      </div>
+    </div>
+    <div class="header-stats" id="headerStats">
+      <span><strong id="statJobs">0</strong> notices up</span>
+      <span class="dot">•</span>
+      <span><strong id="statApps">0</strong> people reached out</span>
+    </div>
+    <button class="btn btn-primary" id="postJobOpenBtn">+ Post a notice</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow">A noticeboard, not an algorithm</p>
+    <h1>Every trade has a name.<br>Every job needs a person.</h1>
+    <p class="hero-copy">Ojiro Board pins real jobs and real gigs for electricians, tailors, mechanics, graduates and everyone in between &mdash; searchable by trade, state and pay, no CV portal required.</p>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <section class="board-controls" aria-label="Search and filter jobs">
+    <input type="search" id="searchInput" placeholder="Search a trade, a role, a keyword…" aria-label="Search jobs" />
+    <select id="categoryFilter" aria-label="Filter by category"></select>
+    <select id="stateFilter" aria-label="Filter by state"></select>
+    <select id="typeFilter" aria-label="Filter by job type"></select>
+  </section>
+
+  <section class="board-meta">
+    <span id="resultsCount">Loading notices…</span>
+  </section>
+
+  <section id="jobList" class="job-grid" aria-live="polite"></section>
+
+  <template id="jobCardTemplate">
+    <article class="job-card">
+      <div class="pin" aria-hidden="true"></div>
+      <div class="job-card-top">
+        <span class="badge badge-category"></span>
+        <span class="badge badge-type"></span>
+      </div>
+      <h3 class="job-title"></h3>
+      <p class="job-poster"></p>
+      <p class="job-location"></p>
+      <p class="job-pay"></p>
+      <p class="job-desc"></p>
+      <div class="job-card-footer">
+        <span class="job-apps"></span>
+        <button class="btn btn-small btn-view">View &amp; apply</button>
+      </div>
+    </article>
+  </template>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Ojiro Board &mdash; built by Kefas Ayuba for the 3MTT NextGen Capstone Project (Software Development track, Brief SD-16: Artisan/Graduate Job Board).</p>
+  </div>
+</footer>
+
+<!-- ===== Post a Job Modal ===== -->
+<div class="modal-backdrop" id="postJobModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="postJobHeading">
+    <button class="modal-close" id="postJobCloseBtn" aria-label="Close">&times;</button>
+    <h2 id="postJobHeading">Post a notice</h2>
+    <p class="modal-sub">Fill this out like you're writing a signboard: clear, short, honest about the pay.</p>
+
+    <form id="postJobForm" novalidate>
+      <label>Job title *
+        <input type="text" name="title" maxlength="120" required placeholder="e.g. Generator technician needed in Barnawa" />
+      </label>
+
+      <label>Your name / business name *
+        <input type="text" name="posterName" maxlength="120" required placeholder="e.g. Nett Electricals" />
+      </label>
+
+      <div class="field-row">
+        <label>Category *
+          <select name="category" required></select>
+        </label>
+        <label>Job type *
+          <select name="jobType" required></select>
+        </label>
+      </div>
+
+      <div class="field-row">
+        <label>State *
+          <select name="state" required></select>
+        </label>
+        <label>LGA / Area
+          <input type="text" name="lga" maxlength="80" placeholder="e.g. Kaduna South" />
+        </label>
+      </div>
+
+      <label>Pay / budget
+        <input type="text" name="payAmount" maxlength="80" placeholder="e.g. ₦25,000/week or Negotiable" />
+      </label>
+
+      <label>Job description *
+        <textarea name="description" maxlength="3000" rows="5" required placeholder="What the work involves, how long it will take, any tools or experience needed…"></textarea>
+      </label>
+
+      <div class="field-row">
+        <label>Phone number *
+          <input type="tel" name="contactPhone" required placeholder="080…" />
+        </label>
+        <label>WhatsApp (if different)
+          <input type="tel" name="contactWhatsapp" placeholder="080…" />
+        </label>
+      </div>
+
+      <label>Email (optional)
+        <input type="email" name="contactEmail" placeholder="you@example.com" />
+      </label>
+
+      <p class="form-error" id="postJobError" role="alert"></p>
+
+      <button type="submit" class="btn btn-primary btn-full">Pin this notice</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== Manage Code Confirmation Modal ===== -->
+<div class="modal-backdrop" id="codeModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="codeHeading">
+    <h2 id="codeHeading">Your notice is up 📌</h2>
+    <p class="modal-sub">Save this code. It is the only way to see who applied, or to take the post down later. We do not use logins, so if you lose it, we cannot recover it for you.</p>
+    <div class="manage-code" id="manageCodeDisplay"></div>
+    <button class="btn btn-secondary btn-full" id="copyCodeBtn">Copy code</button>
+    <button class="btn btn-primary btn-full" id="codeCloseBtn">Done</button>
+  </div>
+</div>
+
+<!-- ===== Job Detail / Apply Modal ===== -->
+<div class="modal-backdrop" id="jobDetailModal">
+  <div class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="jobDetailHeading">
+    <button class="modal-close" id="jobDetailCloseBtn" aria-label="Close">&times;</button>
+    <div id="jobDetailContent"></div>
+  </div>
+</div>
+
+<!-- ===== Manage Job (view applications / delete) Modal ===== -->
+<div class="modal-backdrop" id="manageModal">
+  <div class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="manageHeading">
+    <button class="modal-close" id="manageCloseBtn" aria-label="Close">&times;</button>
+    <h2 id="manageHeading">Manage your notice</h2>
+    <p class="modal-sub">Enter the code you were given when you posted.</p>
+    <form id="manageCodeForm">
+      <input type="text" id="manageCodeInput" placeholder="e.g. 3F9A2C1B" required />
+      <button type="submit" class="btn btn-primary">View applicants</button>
+    </form>
+    <p class="form-error" id="manageError" role="alert"></p>
+    <div id="manageResults"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
