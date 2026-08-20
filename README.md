@@ -2,6 +2,7 @@ Ojiro Board — Artisan / Graduate Job Board
 3MTT NextGen Capstone Project — Software Development track
 Brief SD-16 — Artisan/Graduate Job Board
 Fellow: Kefas Ayuba (FE/23/31738291) — Almara Hub, Kaduna
+
 The problem this solves
 In Nigeria, jobs and talent don't meet. Employers who need an electrician, a
 tailor, or a graduate for admin work post to WhatsApp statuses and Facebook
@@ -9,6 +10,7 @@ groups that disappear in a day. Artisans and graduates looking for work have
 no single place to search by trade, by state, or by pay. Ojiro Board is a
 small, focused noticeboard that fixes that: post a job, search jobs, apply,
 done. No CV upload portals, no sign-up walls.
+
 What it does (MVP features, matching the brief)
 Posts — anyone can post a job or gig with a category, job type
 (full-time, part-time, contract, one-off gig, apprenticeship), state, LGA,
@@ -23,6 +25,7 @@ you're given a one-time management code. That code is the only way to see
 who applied or take the post down. This keeps the MVP simple (no
 accounts, no passwords) while still giving posters control of their own
 listing.
+
 Why it fits the Nigerian context
 Categories cover real Nigerian trades (electrician, generator/AC
 technician, tailor, mechanic, welder, mason, hairdresser/barber) side by
@@ -32,6 +35,7 @@ most artisan gigs are priced by the job, not a fixed monthly figure.
 Every listing has a one-tap WhatsApp button, since that's how most hiring
 conversations in Nigeria actually happen, not email.
 State and LGA fields reflect how Nigerians actually describe location.
+
 Tech stack
 Backend: Node.js + Express
 Database: a lightweight JSON-file data store (db.js), built on
@@ -46,6 +50,7 @@ step) — this keeps the project easy to read end to end and easy to
 deploy anywhere that runs Node
 Everything runs as one web service — the Express server serves both
 the API and the static frontend, so there's only one thing to deploy
+
 Project structure
 Code
 Running it on your own computer
@@ -118,21 +123,4 @@ A note on how this was built
 I used Claude (Anthropic's AI assistant) to help me write and structure
 this code faster than I could have alone. Every route was tested end to
 end before I called it done. I understand what each part of the code
-does and can walk through it live, which is what the demo video is for.| DELETE | `/api/jobs/:id` | Delete a job (requires the correct management code) |
-| POST | `/api/jobs/:id/apply` | Submit an application to a job |
-| GET | `/api/jobs/:id/applications?manageCode=` | View applicants (requires the correct management code) |
-| GET | `/api/stats` | Total jobs and applications, shown in the header |
-
-## What I would build next, given more time
-
-- Employer accounts with real authentication, so a management code isn't
-  the only safeguard.
-- Image upload for a work sample or a business logo.
-- SMS notification to the poster when someone applies (many artisans in
-  the target audience check SMS more reliably than email).
-- Pagination once the number of listings grows past a page or two.
-
-## A note on how this was built
-
-Every route was tested end to end before I called it done. I understand what each part of the code
 does and can walk through it live, which is what the demo video is for.
