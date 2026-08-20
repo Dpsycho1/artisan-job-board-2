@@ -129,6 +129,14 @@ app.get("/api/stats", (req, res) => {
   res.json(store.getStats());
 });
 
+// One-time demo data seed. Safe to visit more than once: it only adds
+// sample jobs if the board is currently empty. Not linked from the UI
+// on purpose, visit it directly in the browser when you need it.
+app.get("/api/seed", (req, res) => {
+  const result = store.seedIfEmpty();
+  res.json(result);
+});
+
 app.listen(PORT, () => {
   console.log(`Artisan/Graduate Job Board running on http://localhost:${PORT}`);
 });
