@@ -129,11 +129,13 @@ app.get("/api/stats", (req, res) => {
   res.json(store.getStats());
 });
 
-// One-time demo data seed. Safe to visit more than once: it only adds
-// sample jobs if the board is currently empty. Not linked from the UI
-// on purpose, visit it directly in the browser when you need it.
+// One-time (or on-demand) demo data seed. Visit /api/seed to fill an
+// empty board. Visit /api/seed?force=true to wipe existing jobs and
+// applications and replace them with fresh sample data, useful before
+// recording a demo. Not linked from the UI on purpose.
 app.get("/api/seed", (req, res) => {
-  const result = store.seedIfEmpty();
+  const force = req.query.force === "true";
+  const result = store.seedIfEmpty(force);
   res.json(result);
 });
 
